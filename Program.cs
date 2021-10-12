@@ -8,62 +8,67 @@ namespace arrays
 {
     class Program
     {
+      static string[] weaponname = new string[3];
+      static int[] ammo = new int[3];
+      static int[] maxAmmo = new int[3];
         static void Main(string[] args)
         {
-            Console.WriteLine("ammo system:");
-            // pistol = 6/6
-            //shotgun = 2/2
-            //...
-            //bfg = 20/20
 
-            int weapon = 0; // 0 = pistol, 1 = shotgun, ... 4 = bfg
-
-            Console.WriteLine("BEFORE Arrays:");
-            int pistolAmmo = 6;
-            int shotgunAmmo = 2;
-            // ...
-            int bfgAmmo = 20;
-
-            if (weapon == 0)
-            {
-                Console.WriteLine("pistol Ammo: " + pistolAmmo);
-            }
-            else if (weapon == 1)
-            {
-                Console.WriteLine("shot gun Ammo: " + shotgunAmmo);
-            }
-            else if (weapon == 2)
-            {
-                Console.WriteLine("BFG Ammo: " + bfgAmmo);
-            }
-
-            Console.WriteLine("Ammo: " + ammo[weapon]);
-
-            Console.ReadKey(true);
-
-            Console.WriteLine();
-
-            Console.WriteLine("Arrays:");
-
-            int[] ammo;
-
-
-
-            ammo = new int[3];
-            ammo[0] = 6;
-            ammo[1] = 2;
-            ammo[2] = 20;
-
-            string[] weaponname = new string[3];
             weaponname[0] = "pistol";
             weaponname[1] = "shotgun";
             weaponname[2] = "bfg";
 
+            ammo[0] = 6;
+            ammo[1] = 2;
+            ammo[2] = 20;
+
+            maxAmmo[0] = 6;
+            maxAmmo[1] = 2;
+            maxAmmo[2] = 20;
+
+            for (int x = 0; x < 6; x++)
+            {
+                fire(0);
+                fire(1);
+                fire(2);
+                Console.WriteLine(weaponname[0] + " ammo: "+ ammo[0]);
+                Console.WriteLine(weaponname[1] + " ammo: " + ammo[1]);
+                Console.WriteLine(weaponname[2] + " ammo: " + ammo[2]);
+
+
+                Console.ReadKey(true);
+            }
+            reload(0);
+            reload(1);
+            reload(2);
             Console.WriteLine("pistol Ammo: " + ammo[0]);
             Console.WriteLine("shot gun Ammo: " + ammo[1]);
             Console.WriteLine("BFG Ammo: " + ammo[2]);
 
-            Console.ReadKey();
+
+            Console.ReadKey(true);
+
+
+        }
+        static void fire(int index)
+        {
+            if (ammo[index] > 0)
+            {
+                Console.WriteLine(weaponname[index] + " firing");
+                ammo[index] -= 1;
+            }
+            
+            Console.ReadKey(true);
+        }
+        static void reload(int index)
+        {
+            if (ammo[index] < maxAmmo[index])
+            {
+                Console.WriteLine(weaponname[index] + " reloading");
+                ammo[index] = maxAmmo[index];
+            }
+           
+
         }
     }
 }
